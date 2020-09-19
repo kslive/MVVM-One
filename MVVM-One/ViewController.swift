@@ -9,30 +9,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
-// Создаем некого пользователя, информацию из которого перенесем в аутлеты:
-    var profile: Profile? {
+    var viewModel: ViewModel! = ViewModel() {
         didSet {
-            guard let profile = profile else { return }
-            self.name.text = profile.name
-            self.secondName.text = profile.secondName
-            self.age.text = "\(profile.age)"
+            self.name.text = viewModel.name
+            self.secondName.text = viewModel.secondName
+            self.age.text = viewModel?.age
         }
     }
+//    var profile: Profile? {
+//        didSet {
+//            guard let profile = profile else { return }
+//            self.name.text = profile.name
+//            self.secondName.text = profile.secondName
+//            self.age.text = "\(profile.age)"
+//        }
+//    }
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var secondName: UILabel!
     @IBOutlet weak var age: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        createUser()
-    }
-
-// Создаем нашего пользователя:
-    func createUser() {
-        
-        profile = Profile(name: "Jhon", secondName: "Smith", age: 33)
-    }
 }
 
