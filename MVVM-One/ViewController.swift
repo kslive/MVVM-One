@@ -8,12 +8,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+// Создаем некого пользователя, информацию из которого перенесем в аутлеты:
+    var profile: Profile? {
+        didSet {
+            guard let profile = profile else { return }
+            self.name.text = profile.name
+            self.secondName.text = profile.secondName
+            self.age.text = "\(profile.age)"
+        }
     }
 
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var secondName: UILabel!
+    @IBOutlet weak var age: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        createUser()
+    }
 
+// Создаем нашего пользователя:
+    func createUser() {
+        
+        profile = Profile(name: "Jhon", secondName: "Smith", age: 33)
+    }
 }
 
